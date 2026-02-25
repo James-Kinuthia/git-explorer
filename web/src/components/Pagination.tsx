@@ -12,6 +12,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, loading }: Paginati
     return (
         <div className="flex justify-center items-baseline gap-2">
             <button
+                type="button"
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1 || loading}
                 className={btnClass}
@@ -22,6 +23,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, loading }: Paginati
                 Page {currentPage} of {totalPages}
             </span>
             <button
+                type="button"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === 1 || loading}
                 className={btnClass}
