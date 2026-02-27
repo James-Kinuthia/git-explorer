@@ -12,7 +12,8 @@ export interface RepoCardProps {
 
 function RepoCard({repo, showOwner=false, dateFormat={year: 'numeric', month: 'long', day: 'numeric'}, variant = 'default'}: RepoCardProps){
     const isEnhanced = variant === 'enhanced';
-    const baseClasses = isEnhanced ? 'bg-gray-800 rounded-xl p-6 hover:bg-gray-750 transition-all duration-200 border border-gray-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20' : 'bg-gray-800 rounded-lg p-6 hover:bg-gray-750 transition-colors border border-gray-700';
+    const baseClasses = isEnhanced ? 'bg-gray-800 rounded-xl p-6 hover:bg-gray-750 transition-all duration-200 border border-gray-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20' :
+     'bg-gray-800 rounded-lg p-6 hover:bg-gray-750 transition-colors border border-gray-700';
     const descriptionClamp = isEnhanced ? 'line-clamp-3' : 'line-clamp-2';
     const statsLayout = isEnhanced ? 'flex flex-wrap items-center gap-4 text-sm text-gray-500' : 'flex items-center gap-4 text-sm text-gray-500';
     const linkClass = 'hover:text-blue-400 transition-colors';

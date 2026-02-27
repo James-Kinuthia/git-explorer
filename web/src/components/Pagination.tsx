@@ -25,7 +25,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, loading }: Paginati
             <button
                 type="button"
                 onClick={() => onPageChange(currentPage + 1)}
-                disabled={currentPage === 1 || loading}
+                disabled={currentPage === totalPages || loading}
                 className={btnClass}
             >
                 Next

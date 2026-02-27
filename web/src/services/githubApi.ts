@@ -41,6 +41,13 @@ export interface SearchResponse<T> {
     items: T[];
 }
 
+
+const headers = {
+    'Authorization': `Bearer ${import.meta.env.VITE_GITHUB_KEY}`,
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+};
+
 // 2. Use a Generic <T> so the helper returns the correct type
 async function handleResponse<T>(response: Response, errorMsg: string): Promise<T> {
     if (!response.ok) {
@@ -55,13 +62,14 @@ async function handleResponse<T>(response: Response, errorMsg: string): Promise<
 
 // 3. Explicitly type the return values of your functions
 export async function fetchUserProfile(username: string): Promise<GitHubUser> {
-    const response = await fetch(`${GIT_BASE_URL}/users/${username}`);
+    const response = await fetch(`${GIT_BASE_URL}/users/${username}`, {headers});
     return handleResponse<GitHubUser>(response, 'Failed to fetch user profile');
 }
 
 export async function fetchRepos(username: string, page = 1, perPage = 30): Promise<GitHubRepo[]> {
     const response = await fetch(
-        `${GIT_BASE_URL}/users/${username}/repos?page=${page}&per_page=${perPage}&sort=updated`
+        `${GIT_BASE_URL}/users/${username}/repos?page=${page}&per_page=${perPage}&sort=updated`,
+        {headers}
     );
     return handleResponse<GitHubRepo[]>(response, 'Failed to fetch user repositories');
 }
@@ -76,11 +84,11 @@ export async function searchRepos(query: string, page = 1, perPage = 30, sort = 
         order 
     });
     
-    const response = await fetch(`${GIT_BASE_URL}/search/repositories?${params.toString()}`);
+    const response = await fetch(`${GIT_BASE_URL}/search/repositories?${params.toString()}`, {headers});
     return handleResponse<SearchResponse<GitHubRepo>>(response, 'Failed to find search queries');
 }
 
 export async function fetchRepoDetails(owner: string, repo: string): Promise<GitHubRepo> {
-    const response = await fetch(`${GIT_BASE_URL}/repos/${owner}/${repo}`);
+    const response = await fetch(`${GIT_BASE_URL}/repos/${owner}/${repo}`, {headers});
     return handleResponse<GitHubRepo>(response, 'Failed to fetch repository details');
 }

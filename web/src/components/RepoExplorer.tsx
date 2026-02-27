@@ -53,7 +53,7 @@ export default function RepoExplorer() {
             performSearch(1, type === 'sort' ? value : sort, type === 'order' ? value : order);
         }
     }
-
+ 
     const totalPages = Math.ceil(totalCount / 30);
     const containerClass = `bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-8 px-4 ${hasSearched ? 'min-h-full' : 'h-full items-center justify-center'}`;
 
